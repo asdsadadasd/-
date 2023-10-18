@@ -1,0 +1,71 @@
+word_list=[]  #한 번 적은 코드를 저장하는 리스트
+turn=0
+p1_score=0
+p2_score=0
+
+def is_valid(word):
+    a=['1', '2', '3', '4', '5', '6', '7', '8', '9', '0','!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '=','a', 'b', 'c', 'd' 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z','A', 'B', 'C', 'D' 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    for i in word:
+        if i in a:
+            return 0
+        else:
+            pass
+    return 1
+
+while True:
+    p1=input('단어를 입력하시오(p1):')
+    if is_valid(p1):
+        word_list.append(p1)
+        turn=1
+        break
+
+    else:
+        print('특수문자가 있습니다 다시 입력 해주세요')
+
+while True :
+    if turn==0:
+        p1=input('단어를 입력하시오(p1):')
+        if is_valid(p1):
+            if p1 in word_list:
+                p1_score=p1_score-1
+                print("단어가 중복되었습니다 다시입력해주세요:")
+                print('p1의 점수',p1_score)
+
+            else:
+                if p2[-1]==p1[0]:
+                    word_list.append(p1)
+                    p1_score=p1_score+1
+                    turn=1
+                    print('p1의 점수',p1_score)
+
+                else:
+                    print('마지막 글자와 일치하지 않습니다')
+                    p1_score=p1_score-1
+                    print('p1의 점수',p1_score)
+
+
+    else:
+        if turn==1:
+            p2=input('단어를 입력하시오(p2):')
+            if is_valid(p2):
+                if p2 in word_list:
+                    p2_score=p2_score-1
+                    print("단어가 중복 되었습니다 다시입력 해주세요:")
+                    print('p2의 점수',p2_score)
+
+                else:
+                    if p1[-1]==p2[0]:
+                        word_list.append(p2)
+                        p2_score=p2_score+1
+                        turn=0
+                        print('p2의 점수', p2_score)
+
+                    else:
+                        print('마지막 글자와 일치하지 않습니다')
+                        p2_score=p2_score-1
+                        print('p2의 점수',p2_score)
+
+            else:
+                print('특수문자가 있습니다 다시 입력 해주세요')
+                p2_score=p2_score-1
+                print('p2의 점수',p2_score)
